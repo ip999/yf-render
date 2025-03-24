@@ -5,7 +5,7 @@ import pkg_resources
 import redis
 
 app = Flask(__name__)
-cache = redis.Redis(host='dwg8ccsc488cw8wc4o0c080c', pasword='8BZU1DMvRP2jgkPTdLBnJhGLdAgEK7kbLVIGs8Ys3kZH1v7yErcRRuQR9s5B5Nth', port=6379)
+cache = redis.Redis(host='dwg8ccsc488cw8wc4o0c080c', password='8BZU1DMvRP2jgkPTdLBnJhGLdAgEK7kbLVIGs8Ys3kZH1v7yErcRRuQR9s5B5Nth', port=6379)
 redis_ttl = 900
 
 
