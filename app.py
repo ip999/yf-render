@@ -5,7 +5,7 @@ import pkg_resources
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/cached')
 def info():
     ticker = request.args.get('ticker')
     if not ticker:
