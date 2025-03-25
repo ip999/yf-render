@@ -3,10 +3,23 @@ from flask import Flask, request, jsonify
 import json
 import pkg_resources
 import redis
+import os
+
 
 app = Flask(__name__)
-cache = redis.Redis(host='dwg8ccsc488cw8wc4o0c080c', password='8BZU1DMvRP2jgkPTdLBnJhGLdAgEK7kbLVIGs8Ys3kZH1v7yErcRRuQR9s5B5Nth', port=6379)
-redis_ttl = 900
+
+# Load Redis configuration from environment variables
+redis_host = os.environ.get('REDIS_HOST', 'localhost')
+redis_password = os.environ.get('REDIS_PASSWORD', '')
+redis_port = int(os.environ.get('REDIS_PORT', 6379))
+redis_ttl = int(os.environ.get('REDIS_TTL', 900))
+
+# Initialize Redis client with environment variables
+cache = redis.Redis(
+    host=redis_host,
+    password=redis_password,
+    port=redis_port
+)
 
 
 @app.route('/')
