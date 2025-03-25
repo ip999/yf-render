@@ -40,14 +40,14 @@ def cached():
     cached_info = cache.get(ticker)
     if cached_info is not None:
         info = json.loads(cached_info)
-        info['x-cache'] = True
+        info['x-cache'] = "hit"
     else:
         try: 
             stock = yf.Ticker(ticker)
             cache.set(ticker, json.dumps(stock.info))
             cache.expire(ticker, redis_ttl)
             info = stock.info
-            info['x-cache'] = False
+            info['x-cache'] = "miss"
         except Exception as e:
             return jsonify({'error': str(e)}), 500
     return jsonify(info)
