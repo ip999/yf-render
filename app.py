@@ -21,6 +21,11 @@ cache = redis.Redis(
 )
 
 
+@app.route('/health')
+def health():
+    return jsonify({"state": "healthy"}), 200
+
+
 @app.route('/')
 def info():
     ticker = request.args.get('ticker')
