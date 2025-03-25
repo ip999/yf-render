@@ -9,7 +9,7 @@ cache = redis.Redis(host='dwg8ccsc488cw8wc4o0c080c', password='8BZU1DMvRP2jgkPTd
 redis_ttl = 900
 
 
-@app.route('/cached')
+@app.route('/')
 def info():
     ticker = request.args.get('ticker')
     if not ticker:
@@ -21,7 +21,7 @@ def info():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/cachetest')
+@app.route('/cached')
 def cached():
     ticker = request.args.get('ticker')
     cached_info = cache.get(ticker)
